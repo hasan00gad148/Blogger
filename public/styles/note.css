@@ -1,0 +1,25 @@
+
+.container{
+    margin: 8rem auto;
+    padding: 2rem;
+    background-color: hsla(300, 70%, 50%,0.2);
+    text-align: center;
+    width: 70%;
+    border-radius: 3rem;
+}
+.container h1{
+    padding: 1rem;
+    font-size: 2.5rem;
+}
+.info{
+    padding: 0.5rem;
+    font-weight: 400;
+}
+.summary{
+    padding: 1rem;
+    font-size: 1.25rem;
+}
+.content{
+    padding: 1rem;
+    font-size: 1.25rem;
+}

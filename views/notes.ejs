@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./includes/head') %>
+    <link rel="stylesheet" href="/public/styles/allnotes.css" />
+    <script src="/public/scripts/notes.js" defer></script>
+  </head>
+  <body>
+
+    <%- include('./includes/header') %>
+    <main>
+      <div class="container">
+        <h1>All Notes</h1>
+
+        <ul class="notelist">
+
+          <% notes.forEach(note => { %>
+            <%- include('./includes/notecard',{note:note}) %>
+          <% }) %>
+                
+        </ul>
+      </div>
+
+      <aside>
+        <div>
+            <h1>
+                Are you sure you want to delete this?
+            </h1>
+
+            <ul>
+                <li><a href="">Yes</a></li>
+                <li><a href="">No</a></li>
+            </ul>
+        </div>
+      </aside>
+    </main>
+
+  </body>
+</html>

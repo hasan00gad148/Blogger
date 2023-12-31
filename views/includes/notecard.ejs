@@ -1,0 +1,30 @@
+<li class="notecard">
+    <h2><%= note.title %></h2>
+    <p>
+      <span>BY:</span> 
+      <span><%=note.auther_name%></span>
+      <br>
+      <span>AT:</span>
+      <time datetime=<%=note.note_date.toISOString()%>>
+        <%=note.note_date.toLocaleTimeString("en-UK",{
+          weekday: "long",
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour12:false
+        })%>
+      </time>
+    </p>
+    <p> 
+
+    </p>
+       
+    <p>
+        <%= note.summary %>
+    </p>
+    <ul>
+      <li><a href=<%="/notes/"+note.id  %> class="view-btn">view</a></li>
+      <li><a href=<%="/notes/"+note.id+"/edit"  %> class="edit-btn">edit</a></li>
+      <li><a href=<%="/notes/"+note.id+"/delete" %>  class="del-btn">delete</a></li>
+    </ul>
+  </li>

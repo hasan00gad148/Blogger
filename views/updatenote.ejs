@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./includes/head') %>
+    <link rel="stylesheet" href="/public/styles/createnote.css">
+    <script src="/public/scripts/updatenote.js" defer></script>
+</head>
+<body>
+    <%- include('./includes/header') %> 
+
+    <main class="container">
+        <h1>Update Note</h1>
+        <form action=<%="/notes/"+note.id+"/edit"  %> method="post" id="form" >
+            <label for="auther"> Note Auther </label>
+            <input type="text" name="auther" id="auther" value=<%=note.auther_name%> required>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value=<%=note.title%> required>
+            <label for="summary">Summary</label>
+            <textarea name="summary" id="summary" cols="70" rows="7"  required> <%=note.summary%></textarea>
+            <label for="content">Content</label>
+            <textarea name="content" id="content" cols="70" rows="21" required><%=note.content%> </textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+</body>
+</html>
