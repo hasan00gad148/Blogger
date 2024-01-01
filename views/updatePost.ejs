@@ -10,11 +10,17 @@
 
     <main class="container">
         <h1>Update Post</h1>
-        <form action=<%="/notes/"+note.id+"/edit"  %> method="post" id="form" >
+        <form action=<%="/posts/"+post._id+"/edit"  %> method="post" id="form" >
             <label for="auther"> Post Auther </label>
             <select name="auther" id="auther" required>
                 <% authers.forEach(auther => { %>
-                 <option value=<%= auther._id %>><%= auther.name %></option>
+                    <% if (auther._id.equals(post.auther_id) ) { %>
+                        <option value=<%= auther._id %> selected><%= auther.name %></option>
+
+                        <% } else { %>
+                            <option value=<%= auther._id %> ><%= auther.name %></option>
+
+                            <% } %>
                 <% }) %>
             </select>
             <label for="title">Title</label>

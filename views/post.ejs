@@ -7,11 +7,11 @@
 <body>
     <%- include('./includes/header') %>
     <main>
-        <div class="container">
+        <div class="container" id="post" data-postId=<%= post._id %>>
             <h1><%= post.title %></h1>
             <p class="info">
                 <span>By:</span> 
-                <span><%=post.auther.name%></span>
+                <span><a href=<%= `mailto:${post.auther.mail}` %>><%=post.auther.name%></a></span>
                 <br>
                 <span>At:</span>
                 <time datetime=<%=post.date.toISOString()%>>

@@ -33,7 +33,7 @@ form.addEventListener('submit',(e)=>{
           .then(data => {
             // Handle the response data
             if(data.success)
-                alert("note updated successfully")
+                alert("note created successfully")
             else
                 alert("An error occurred");
           })

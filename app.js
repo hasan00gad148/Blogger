@@ -47,8 +47,7 @@ app.get('/', function (req, res) {
 app.get('/posts', async function (req, res, next) {
   try {
   const posts = await db.collection("posts").find({}).toArray();
-  console.log(posts[0],posts[0].auther.name);
-  
+
   res.render("posts",{posts:posts})
   } catch (err) {
     next(err);
@@ -70,7 +69,7 @@ app.get('/createpost', async function (req, res,next) {
 app.post('/createpost', async function (req, res) {
   let auther = null;
   try{
-    console.log(req.fields)
+ 
     auther = await db.collection("authers").find({_id:new objectId(req.fields.auther)}).toArray();
     auther = auther[0]
     console.log(auther)
@@ -83,13 +82,13 @@ app.post('/createpost', async function (req, res) {
     title:req.fields.title,
     summary:req.fields.summary,
     content:req.fields.content,
-    date:req.fields.date,
+    date:new Date(),
     auther:{
       name:auther.name,
       mail:auther.mail
     }
   };
-  console.log(post);
+
   try{
   await db.collection("posts").insertOne(post)
   res.send({success: true})
@@ -119,6 +118,8 @@ getdb()
 .then(database => {
     db = database
     if (db){
+
+    
     port = 3000
     app.listen(port,(err, req, res)=>{
         if (err){
