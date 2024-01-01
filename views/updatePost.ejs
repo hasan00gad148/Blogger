@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./includes/head') %>
+    <link rel="stylesheet" href="/public/styles/createpost.css">
+    <script src="/public/scripts/updatepost.js" defer></script>
+</head>
+<body>
+    <%- include('./includes/header') %> 
+
+    <main class="container">
+        <h1>Update Post</h1>
+        <form action=<%="/notes/"+note.id+"/edit"  %> method="post" id="form" >
+            <label for="auther"> Post Auther </label>
+            <select name="auther" id="auther" required>
+                <% authers.forEach(auther => { %>
+                 <option value=<%= auther._id %>><%= auther.name %></option>
+                <% }) %>
+            </select>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" value=<%=post.title%> required>
+            <label for="summary">Summary</label>
+            <textarea name="summary" id="summary" cols="70" rows="7"  required> <%=post.summary%></textarea>
+            <label for="content">Content</label>
+            <textarea name="content" id="content" cols="70" rows="21" required><%=post.content%> </textarea>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+</body>
+</html>

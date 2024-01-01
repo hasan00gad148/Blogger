@@ -2,22 +2,25 @@
 <html lang="en">
   <head>
     <%- include('./includes/head') %>
-    <link rel="stylesheet" href="/public/styles/allnotes.css" />
-    <script src="/public/scripts/notes.js" defer></script>
+    <link rel="stylesheet" href="/public/styles/allposts.css" />
+    <script src="/public/scripts/posts.js" defer></script>
   </head>
   <body>
 
     <%- include('./includes/header') %>
     <main>
       <div class="container">
-        <h1>All Notes</h1>
+        <h1>All Posts</h1>
 
-        <ul class="notelist">
-
-          <% notes.forEach(note => { %>
-            <%- include('./includes/notecard',{note:note}) %>
-          <% }) %>
-                
+        <% if (!posts || posts.length==0) { %>
+         <p> No posts found but you can creat one</p>
+        <% } %>
+        <ul class="postlist">
+          <% if (posts && posts.length>0) { %>
+            <% posts.forEach(post => { %>
+              <%- include('./includes/postcard',{post:post}) %>
+            <% }) %>
+          <% } %>            
         </ul>
       </div>
 

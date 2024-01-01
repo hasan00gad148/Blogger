@@ -4,11 +4,11 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const formidable = require('express-formidable');
 
-const dp = require("./database/mongoDB");
+const {getdb,objectId} = require("./database/mongoDB");
 const router = require("./routes/changeNotes");
 
 
-
+db = null;
 
 app = express();
 
@@ -41,36 +41,60 @@ app.use(router);
 
 
 app.get('/', function (req, res) {
-  res.redirect("/notes");
+  res.redirect("/posts");
 });
 
-app.get('/notes', async function (req, res) {
-  let query = 'SELECT id, title, summary, auther_name, note_date FROM notes';
-  const [notes] = await dp.query(query);
-  res.render("notes",{notes:notes})
+app.get('/posts', async function (req, res, next) {
+  try {
+  const posts = await db.collection("posts").find({}).toArray();
+  console.log(posts[0],posts[0].auther.name);
+  
+  res.render("posts",{posts:posts})
+  } catch (err) {
+    next(err);
+  }
 });
 
 
 
-app.get('/createnote', async function (req, res) {
-  res.render("createnote",{})
+app.get('/createpost', async function (req, res,next) {
+  try {   
+    const authers = await db.collection("authers").find({}).toArray();
+    res.render("createpost",{authers:authers});
+  } catch (error) {
+    next(error)
+  }
 });
 
 
-app.post('/createnote', async function (req, res) {
-  let query = 'insert into notes (auther_name, title, summary, content) VALUES (?)';
-  list = [
-    req.fields.auther,
-    req.fields.title,
-    req.fields.summary,
-    req.fields.content
-  ];
-  console.log(list,req.fields);
+app.post('/createpost', async function (req, res) {
+  let auther = null;
   try{
-  await dp.query(query,[list]);
+    console.log(req.fields)
+    auther = await db.collection("authers").find({_id:new objectId(req.fields.auther)}).toArray();
+    auther = auther[0]
+    console.log(auther)
+    }catch (err) {
+      console.error(err)
+    return res.send({success: false})
+  } 
+  post = {
+    auther_id:auther._id,
+    title:req.fields.title,
+    summary:req.fields.summary,
+    content:req.fields.content,
+    date:req.fields.date,
+    auther:{
+      name:auther.name,
+      mail:auther.mail
+    }
+  };
+  console.log(post);
+  try{
+  await db.collection("posts").insertOne(post)
   res.send({success: true})
   }catch (err) {
-    
+    console.error(err)
   res.send({success: false})
   }
 });
@@ -82,19 +106,28 @@ app.post('/createnote', async function (req, res) {
 
 
 app.use((req, res, next) => {
-    res.status(404).send('<h1> Sorry, we cannot find that! </h1>');
+    res.status(404).send('404');
   });
 
 app.use((err,req, res, next) => {
     console.error(err)
-    res.status(500 || err.status).send('<h1> Sorry, something went wrong </h1>');
+    res.status(500 || err.status).render('500');
   });
 
 
-port = 3000
-app.listen(port,(err, req, res)=>{
-    if (err){
-        console.error(err)
-    }
-    console.log("listenning on port " +port + ".......")
+getdb()
+.then(database => {
+    db = database
+    if (db){
+    port = 3000
+    app.listen(port,(err, req, res)=>{
+        if (err){
+            console.error(err)
+        }
+        console.log("listenning on port " +port + ".......")
+    })
+  }
+  else{
+    console.error("couldn't connect to database")
+  }
 })

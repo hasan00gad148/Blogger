@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <%- include('./includes/head') %>
-    <link rel="stylesheet" href="/public/styles/note.css">
+    <link rel="stylesheet" href="/public/styles/post.css">
 </head>
 <body>
     <%- include('./includes/header') %>
     <main>
         <div class="container">
-            <h1><%= note.title %></h1>
+            <h1><%= post.title %></h1>
             <p class="info">
                 <span>By:</span> 
-                <span><%=note.auther_name%></span>
+                <span><%=post.auther.name%></span>
                 <br>
                 <span>At:</span>
-                <time datetime=<%=note.note_date.toISOString()%>>
-                <%=note.note_date.toLocaleTimeString("en-UK",{
+                <time datetime=<%=post.date.toISOString()%>>
+                <%=post.date.toLocaleTimeString("en-UK",{
                     weekday: "long",
                     year: 'numeric',
                     month: 'numeric',
@@ -27,12 +27,12 @@
             <h3>Summary:</h3>
             <p class="summary">
                 
-                <%=note.summary %>
+                <%=post.summary %>
             </p>
             <h3>Content:</h3>
             <p class="content">
                 
-                <%= note.content %>
+                <%= post.content %>
             </p>
     </div>
     </main>

@@ -30,7 +30,7 @@ aside ul > li:nth-of-type(1) a:hover{
     background-color:hsla(0, 80%, 40%,0.2);;
 }
 
-.container,.notelist{
+.container,.postlist{
     text-align: center;
     padding: 3rem;
     display: flex;
@@ -39,7 +39,7 @@ aside ul > li:nth-of-type(1) a:hover{
     align-items: center;
 }
 
-.notecard{
+.postcard{
     text-align: center;
     padding: 1.5rem;
     width: 80%;
@@ -48,22 +48,22 @@ aside ul > li:nth-of-type(1) a:hover{
     margin: 0 auto ;
 }
 
-.notecard *{
+.postcard *{
     padding: 0.75rem;
 }
-.notecard p{
+.postcard p{
     font-size: 1.2rem;
     font-weight: 500;
 }
-.notecard ul {
+.postcard ul {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
     gap: 1rem;
 }
-.notecard .del-btn{
+.postcard .del-btn{
     color: hsl(0, 80%, 40%);
 }
-.notecard .del-btn:hover{
+.postcard .del-btn:hover{
     background-color:hsla(0, 80%, 40%,0.2);;
 }

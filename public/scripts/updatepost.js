@@ -22,12 +22,13 @@ form.addEventListener('submit',(e)=>{
     });
     if(valid) {
         const formdata = new FormData(form);
-        fetch("/createnote", {
+        console.log(form.action);
+        fetch(form.action, {
             method: "POST",
             body: formdata,
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              }
+            // headers: {
+            //   "Content-Type": "application/x-www-form-urlencoded"
+            // }
           })
           .then(response => response.json())
           .then(data => {
@@ -36,10 +37,11 @@ form.addEventListener('submit',(e)=>{
                 alert("note updated successfully")
             else
                 alert("An error occurred");
+            console.log(data.success);
           })
           .catch(error => {
             // Handle the error
-            alert("An error occurred")
+            alert("An error occurred");
             console.error(error);
           });
           

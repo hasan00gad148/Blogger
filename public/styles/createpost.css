@@ -32,6 +32,14 @@ input{
     border-radius: 0.5rem;
 }
 
+select{
+    background: transparent;
+    color: hsl(200, 40%, 30%);
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+}
+
 textarea{
     background: transparent ;
     padding: 0.5rem;

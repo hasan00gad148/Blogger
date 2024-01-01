@@ -1,25 +1,24 @@
 const express = require('express')
 
-const dp = require("../database/mongoDB");
-
+const {getdb,objectId} = require("../database/mongoDB");
 
 const router = express.Router()
 
 
-router.get('/notes/:id', async function (req, res) {
+router.get('/posts/:id', async function (req, res) {
     let query = 'SELECT * FROM notes where id = ?';
-    const [note] = await dp.query(query,[req.params.id]);
-    if (!note || note.length == 0) {
+    const post = await db.collection("posts").find({_id:new objectId(req.params.id)}).toArray();
+    if (!post || post.length == 0) {
       return res.status(404).send('<h1> Sorry, we cannot find that note! </h1>');
     }
-    res.render("note",{note:note[0]})
+    res.render("post",{post:post[0]})
   });
 
 
 
-  router.get('/notes/:id/edit', async function (req, res) {
-    let query = 'SELECT * FROM notes where id = ?';
-    const [note] = await dp.query(query,[req.params.id]);
+  router.get('/posts/:id/edit', async function (req, res) {
+
+    const note = await dp.query(query,[req.params.id]);
   
     if (!note || note.length == 0) {
       return res.status(404).send('<h1> Sorry, we cannot find that note! </h1>');
@@ -30,7 +29,7 @@ router.get('/notes/:id', async function (req, res) {
   
 
 
-  router.post('/notes/:id/edit', async function (req, res) {
+  router.post('/posts/:id/edit', async function (req, res) {
     let query = 'UPDATE  notes SET auther_name=?, title=?, summary=?, content=? WHERE  id = ?';
   
     list = [
@@ -52,7 +51,7 @@ router.get('/notes/:id', async function (req, res) {
   
 
 
-  router.post('/notes/:id/delete', async function (req, res) {
+  router.post('/posts/:id/delete', async function (req, res) {
     let query = 'delete from notes where id = ?';
     try{
       await dp.query(query,[req.params.id]);

@@ -1,0 +1,30 @@
+<li class="postcard">
+    <h2><%= post.title %></h2>
+    <p>
+      <span>BY:</span> 
+      <span><%=post.auther.name%></span>
+      <br>
+      <span>AT:</span>
+      <time datetime=<%=post.date.toISOString()%>>
+        <%=post.date.toLocaleTimeString("en-UK",{
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour12:false,
+          
+        })%>
+      </time>
+    </p>
+    <p> 
+
+    </p>
+       
+    <p>
+        <%= post.summary %>
+    </p>
+    <ul>
+      <li><a href=<%="/posts/"+post._id  %> class="view-btn">view</a></li>
+      <li><a href=<%="/posts/"+post._id+"/edit"  %> class="edit-btn">edit</a></li>
+      <li><a href=<%="/posts/"+post._id+"/delete" %>  class="del-btn">delete</a></li>
+    </ul>
+  </li>
