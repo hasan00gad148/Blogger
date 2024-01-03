@@ -5,7 +5,7 @@ const express = require("express");
 const formidable = require('express-formidable');
 
 const {getdb,objectId} = require("./database/mongoDB");
-const router = require("./routes/changeNotes");
+const router = require("./routes/changepost");
 
 
 db = null;
@@ -50,7 +50,7 @@ app.get('/posts', async function (req, res, next) {
 
   res.render("posts",{posts:posts})
   } catch (err) {
-    next(err);
+    return res.status(500).render("500")
   }
 });
 
@@ -61,7 +61,7 @@ app.get('/createpost', async function (req, res,next) {
     const authers = await db.collection("authers").find({}).toArray();
     res.render("createpost",{authers:authers});
   } catch (error) {
-    next(error)
+    return res.status(500).render("500")
   }
 });
 

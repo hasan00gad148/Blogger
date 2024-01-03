@@ -3,6 +3,7 @@
 <head>
     <%- include('./includes/head') %>
     <link rel="stylesheet" href="/public/styles/post.css">
+    <script src="/public/scripts/comments.js" defer></script>
 </head>
 <body>
     <%- include('./includes/header') %>
@@ -30,10 +31,43 @@
                 <%=post.summary %>
             </p>
             <h3>Content:</h3>
-            <p class="content">
+            <md-block class="content">
                 
                 <%= post.content %>
-            </p>
+            </md-block>
+
+            <div class="comments" >
+                <a href="" class="load-comments-btn" data-postId=<%= post._id %>> load comments</a>
+
+                <div class="comments-list">
+                    <h2>comments</h2>
+                    <ul >
+
+
+                    </ul>
+                    <a href="" class="more-comments-btn" data-postId=<%= post._id %>> more comments</a>
+                </div>
+
+            </div>
+    </div>
+    
+    <div>
+        <form action="" class="add-comment" data-postId=<%= post._id %>>
+            <div>
+                <h2> add a comment</h2>
+            </div>
+            <div>
+                <label for="title"> title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div>        
+                <label for="content" > content</label>
+                <input type="text" id="content" name="content" required>
+            </div>
+            <div>
+                <input type="submit" value="submit">
+            </div>
+        </form>
     </div>
     </main>
 </body>

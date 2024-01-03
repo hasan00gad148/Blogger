@@ -4,6 +4,7 @@
     <%- include('./includes/head') %>
     <link rel="stylesheet" href="/public/styles/createpost.css">
     <script src="/public/scripts/createpost.js" defer></script>
+    <script src="/public/scripts/md.js" defer></script>
 </head>
 <body>
     <%- include('./includes/header') %> 
@@ -21,8 +22,10 @@
             <input type="text" name="title" id="title" required>
             <label for="summary">Summary</label>
             <textarea name="summary" id="summary" cols="70" rows="7" required></textarea>
-            <label for="content">Content</label>
+            <label for="content">Content</label> 
             <textarea name="content" id="content" cols="70" rows="21" required></textarea>
+            <md-block></md-block>
+            <a href=""> preveiw</a>
             <input type="submit" value="Submit">
         </form>
     </main>

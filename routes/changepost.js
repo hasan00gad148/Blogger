@@ -5,12 +5,17 @@ const {getdb,objectId} = require("../database/mongoDB");
 const router = express.Router()
 
 router.get('/posts/:id', async function (req, res) {
-    let query = 'SELECT * FROM notes where id = ?';
+  try {
     const [post] = await db.collection("posts").find({_id:new objectId(req.params.id)}).toArray();
     if (!post || post.length == 0) {
-      return res.status(404).send('<h1> Sorry, we cannot find that note! </h1>');
+      return res.status(404).render("404");
     }
     res.render("post",{post:post})
+  } catch (error) {
+    console.error(error)
+    return res.status(500).render("500")
+  }
+
   });
 
 
@@ -22,7 +27,7 @@ router.get('/posts/:id', async function (req, res) {
 
       res.render("updatepost",{post:post,authers:authers});
     } catch (error) {
-      next(error)
+      return res.status(500).render("500")
     }
    
   });
@@ -73,7 +78,65 @@ router.get('/posts/:id', async function (req, res) {
       res.send({success: false})
     }
   });
+ 
   
+
+
+
+
+
+
+
+
+
+  router.get('/posts/:id/comments', async function (req, res) {
+    try {
+      const where = {post_id:new objectId(req.params.id)}
+      console.log(req.query.skip)
+      const options = {skip:+req.query.skip, limit:5}
+      const comments = await db.collection("comments").find(where,options).toArray();
+      if (!comments || comments.length == 0) {
+        return res.json({success: true});
+      }else {
+        
+        return res.json({success: true,comments: comments});
+      }
+
+    } catch (error) {
+      console.error(error)
+      return res.json({success: false});
+    }
+  
+    });
+
+
+
+
+    
+
+  router.post('/posts/:id/comment', async function (req, res) {
+    const post_id = req.params.id;
+    try {
+      const [post] = await db.collection("posts").find({_id:new objectId(post_id)}).toArray();
+      if (post) {
+        comment={
+          post_id:new objectId(post_id),
+          title:req.fields.title,
+          content:req.fields.content
+        }
+        
+        let dbres =  await db.collection("comments").insertOne(comment)
+        // console.log(dbres,comment);
+        return res.json({success: true});
+      }
+      return res.json({success: false});
+
+    } catch (error) {
+      console.error(error)
+      return res.json({success: false});
+    }
+  
+  });
   
   
 

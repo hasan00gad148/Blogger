@@ -1,9 +1,12 @@
+*{
+    text-align: center;
+
+}
 
 .container{
     margin: 8rem auto;
     padding: 2rem;
     background-color: hsla(200, 70%, 60%,0.9) ;
-    text-align: center;
     width: 70%;
     border-radius: 3rem;
 }
@@ -19,7 +22,7 @@
     padding: 1rem;
     font-size: 1.25rem;
 }
-.content{
+.content,md-block{
     padding: 1rem;
     font-size: 1.25rem;
 }
@@ -29,4 +32,91 @@ span a{
 span a:hover{
     background-color: transparent !important; 
     font-size: 1.1rem;
+    text-decoration: underline;
 }
+
+.comments{
+    text-align: center;
+    padding: 2rem;
+    margin:auto auto ;
+    margin-top: 4rem;
+    border-top: 0.15rem solid hsl(200, 10%, 20%);
+}
+
+.load-comments-btn{
+    background-color: hsl(200, 60%, 70%); 
+    padding: 1rem;
+    margin-block: 2rem;
+}
+.load-comments-btn:hover{
+    background-color: hsl(200, 70%, 80%); 
+    
+    
+}
+.comments-list, .add-comment{
+    text-align: center;
+    padding: 2rem;
+    display: grid ;
+    grid-template-columns: 80%;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+}
+.comments-list{
+    display: none;
+    list-style: none !important;
+}
+.more-comments-btn{
+    background-color: hsl(200, 60%, 70%); 
+    padding: 1rem;
+    margin-block: 2rem;
+    width: 30%;
+    margin: auto auto;
+}
+.more-comments-btn:hover{
+    background-color: hsl(200, 70%, 80%); 
+    
+    
+}
+
+.comments-list li{
+    border-bottom: 0.1rem solid hsl(200, 5%, 10%);
+}
+ .comments-list li, .comments-list li *{
+    padding: 0.5rem;
+}
+
+.add-comment{
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: hsla(200, 75%, 65%, 0.7) ;
+    width: 50%;
+    border-radius: 3rem;   
+  
+}
+.add-comment label{
+    padding: 1rem;
+    font-size: 1.25rem;
+}
+.add-comment input[type="text"]{
+    background-color: hsl(200, 70%, 80%); 
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    font-size: 1.25rem;
+}
+.add-comment input[type="submit"]{
+   
+ 
+    background-color: hsl(200, 60%, 70%); 
+    padding: 0.75rem;
+    font-size: 1.1rem;   
+    width: 20%;
+   cursor: pointer;
+    border-radius: 1rem ;
+}
+
+.add-comment input[type="submit"]:hover{
+    background-color: hsl(200, 70%, 80%); 
+}
+

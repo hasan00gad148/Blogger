@@ -20,7 +20,9 @@ form{
     padding: 2rem;
     border-radius: 1rem;
 }
-
+form a{
+    background-color: hsla(200, 60%, 60%,1) ;
+}
 label{
     font-weight: bold;
     font-size: 1.2rem;
@@ -28,6 +30,7 @@ label{
 
 input{
     background: transparent ;
+    background-color: hsl(200, 70%, 80%); 
     padding: 0.5rem;
     width: 50%;
     font-size: 1.2rem;
@@ -37,6 +40,7 @@ input{
 
 select{
     background: transparent;
+    background-color: hsl(200, 70%, 80%); 
     color: hsl(200, 5%, 15%);
     padding: 0.5rem;
     font-size: 1.2rem;
@@ -45,18 +49,34 @@ select{
 
 textarea{
     background: transparent ;
+    background-color: hsl(200, 70%, 80%); 
     padding: 0.5rem;
     font-size: 1.2rem;
     white-space: pre-wrap;
     border-radius: 1rem;
     border:2px solid hsl(200, 40%, 30%);
 }
-
+md-block{
+    background: transparent ;
+    background-color: hsl(200, 70%, 80%); 
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    border:2px solid hsl(200, 40%, 30%);
+    display: none;
+}
 input[type="submit"]{
-    background-color: hsl(200, 60%, 70%); ;
+   
+ 
+    background-color: hsl(200, 60%, 70%); 
     padding: 0.75rem;
     font-size: 1.25rem;   
     width: 20%;
-   
+   cursor: pointer;
     border-radius: 1rem ;
+    margin-block: 2rem;
+}
+
+input[type="submit"]:hover{
+    background-color: hsl(200, 70%, 80%); 
 }

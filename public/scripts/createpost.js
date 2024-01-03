@@ -8,7 +8,7 @@ const submit_btn = document.querySelector('input[type="submit"]');
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    console.log('submit form clicked');
+
     valid = true;
     inputs.forEach((input)=>{
         if(input.value.trim() == '') {
@@ -33,7 +33,7 @@ form.addEventListener('submit',(e)=>{
           .then(data => {
             // Handle the response data
             if(data.success)
-                alert("note created successfully")
+                alert("post created successfully")
             else
                 alert("An error occurred");
           })
@@ -51,3 +51,17 @@ form.addEventListener('submit',(e)=>{
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
